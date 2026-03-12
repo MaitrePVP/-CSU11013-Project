@@ -1,10 +1,11 @@
-int currentScreen = 0; // 0 = home, 1 = results, 2 = info, 3 = snake
+int currentScreen = 0; // 0 = home, 1 = results, 2 = info, 3 = snake, 4 = graph
 
 Button startButton;
 Button infoButton;
 Button quitButton;
 Button backButton;
 Button snakeButton;
+Button graphButton;
 
 boolean clickedAlessandro = false;
 boolean clickedMusa = false;
@@ -28,6 +29,7 @@ void setup() {
   infoButton  = new Button(width/2 - 150, 410, 300, 60, "Group Info");
   quitButton  = new Button(width/2 - 150, 500, 300, 60, "Exit");
   backButton  = new Button(40, 40, 160, 50, "Back to Home");
+  graphButton = new Button(1000, 40, 160, 50, "See Graphs");
   snakeButton = new Button(width/2 - 120, 590, 240, 55, "Play Snake");
 
   initSnakeGame();
@@ -44,6 +46,8 @@ void draw() {
     drawInfoScreen();
   } else if (currentScreen == 3) {
     drawSnakeScreen();
+  }else if (currentScreen == 4) {
+    //drawGraphScreen();
   }
 }
 
@@ -114,6 +118,7 @@ void drawResultsScreen() {
   text("will be displayed here.", 745, 260);
 
   backButton.display();
+  graphButton.display();
 }
 
 void drawInfoScreen() {
@@ -182,6 +187,8 @@ void mousePressed() {
   } else if (currentScreen == 1) {
     if (backButton.isMouseOver()) {
       currentScreen = 0;
+    }else if (graphButton.isMouseOver()){
+      currentScreen = 4;
     }
   } else if (currentScreen == 2) {
     if (backButton.isMouseOver()) {
